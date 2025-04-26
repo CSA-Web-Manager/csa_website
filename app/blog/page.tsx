@@ -1,9 +1,13 @@
-const UploadPage = () => {
-    return (
-        <div className="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white p-6">
-            <h1 className="text-3xl font-bold mb-6">Blog</h1>
-        </div>
-    )
+import React from 'react';
+import { PostList } from '../../components/PostList';
+import { Loader } from '../../components/Loader';
+import { Suspense } from 'react';
+export default async function Page(): Promise<JSX.Element> {
+  return (
+    <main className="mx-auto mt-4 w-full max-w-3xl flex-col space-y-16 px-4 lg:px-0">
+      <Suspense fallback={<Loader />}>
+        <PostList />
+      </Suspense>
+    </main>  );
 }
-
-export default UploadPage;
+export const revalidate = 60;
